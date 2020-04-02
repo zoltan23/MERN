@@ -1,0 +1,11 @@
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+li {
+    list-style: none;
+    padding: 20px;
+}
