@@ -1,0 +1,6 @@
+.card {
+    border: seashell;
+    background-color: tomato;
+    border-radius: 15px;
+    width: 50%;
+}
