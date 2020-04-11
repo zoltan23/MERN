@@ -1,11 +1,30 @@
-
 .navbar {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    font-size: 20px;
+    background-color: rgb(241, 106, 185);
+    height: 60px;
+    align-items: center;
+    border-bottom: 7px solid purple;
+}
+
+.navbar-left {
+    display: flex;
+}
+
+.navbar-center {
+    display: flex;
+}
+
+.navbar-right {
+    display: flex;
 }
 
 li {
     list-style: none;
     padding: 20px;
+}
+
+li:hover {
+    background-color: rgb(238, 223, 13);
 }
