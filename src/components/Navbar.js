@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import './Navbar.css';
 import { Link, Route, Switch } from 'react-router-dom';
 import Home from './Home';
+import Login from './UI/Login';
 
 export default function Navbar() {
 
@@ -20,13 +21,13 @@ export default function Navbar() {
                     </ul>
                     <ul className="navbar-right">
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/login">Login</Link></li>
                     </ul>
                 </nav>
                 <Switch>
                     <Route path='/' exact component={Home}></Route>
-                    <Route path='/link1' ></Route>
-                    <Route path='/link2' ></Route>
+                    <Route path='/login' component={Login}></Route>
+                    <Route path='/  '></Route>
                 </Switch>
             </Route>
         </Fragment>
