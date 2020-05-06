@@ -1,0 +1,8 @@
+.container-carousel {
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    background-image: url('./../../assets/images/slc.jpeg'); 
+    background-size: 500px 300px;
+}
+

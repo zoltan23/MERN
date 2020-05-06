@@ -1,0 +1,21 @@
+.card-su {
+    background-color: rgba(0,0,0,.45);
+    border-radius: 15px;
+    width: 50%;
+    height: 150px;
+    margin: 5px;
+    z-index: 10;
+    padding: 2px;
+}
+
+.p-su {
+    font-size: 30px;
+    color: white;
+}
+
+.button-su {
+    background-color: white;
+    border-radius: 10px;
+    width: 80%;
+    height: 30px; 
+}
