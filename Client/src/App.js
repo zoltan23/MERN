@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Navbar from './components/UI/layout/Navbar'
 import './App.css';
 import Home from './components/Home';
@@ -15,11 +15,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      { !isLoggedIn ? <Redirect to="/signin" /> : <Redirect to="/home" />} 
           <UserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Navbar />
         <Switch>
-            <Route path='/' exact component={Home}></Route>
-            <Route path='/login' component={Login}></Route>
+            <Route path='/home' exact component={Home}></Route>
+            <Route path='/signin' component={Login}></Route>
             <Route path='/settings' component={Settings}></Route>
             <Route path='/portfolio' component={Portfolio}></Route>
         </Switch>
