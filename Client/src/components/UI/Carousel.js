@@ -1,5 +1,5 @@
 import React from 'react'
-import SignUp from './SignUp'
+import SignUp from './screens/SignUp'
 import './Carousel.css';
 
 const Carousel = () => {

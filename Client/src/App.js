@@ -7,6 +7,8 @@ import Settings from './components/UI/Settings';
 import Login from './components/UI/Login';
 import Portfolio from './components/UI/screens/Portfolio';
 import { UserContext } from './components/services/UserContext'
+import Test from './components/UI/screens/Test';
+import SignUp from './components/UI/screens/SignUp';
 
 function App() {
 
@@ -21,8 +23,10 @@ function App() {
         <Switch>
             <Route path='/home' exact component={Home}></Route>
             <Route path='/signin' component={Login}></Route>
+            <Route path='/signup' component={SignUp}></Route>
             <Route path='/settings' component={Settings}></Route>
             <Route path='/portfolio' component={Portfolio}></Route>
+            <Route path='/test' component={Test}></Route>
         </Switch>
           </UserContext.Provider>
       </BrowserRouter>
