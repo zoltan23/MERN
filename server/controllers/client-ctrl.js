@@ -71,10 +71,33 @@ updateClient = async (req, res) => {
     })
 }
 
+getClientById = async (req, res) => {
+    await Client.findOne({ _id: req.params.id }, (err, client) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
 
+        return res.status(200).json({ success: true, data: client })
+    }).catch(err => console.log(err))
+}
 
+getClients = async (req, res) => {
+    await Client.find({}, (err, clients) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!clients.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Movie not found` })
+        }
+        return res.status(200).json({ success: true, data: movies })
+    }).catch(err => console.log(err))
+}
 
 module.exports = {
     createClient,
     updateClient,
+    getClientById,
+    getClients
 }

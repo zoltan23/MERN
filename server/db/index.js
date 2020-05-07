@@ -1,7 +1,9 @@
+const { MONGO_SVR } = require('./atlas_creds')
 const mongoose = require('mongoose')
+console.log(MONGO_SVR)
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/clients', { useNewUrlParser: true })
+    .connect(MONGO_SVR, { useNewUrlParser: true })
     .catch(e => {
         console.error('Connection error', e.message)
     })

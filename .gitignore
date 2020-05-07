@@ -1,0 +1,3 @@
+Client/node_modules
+server/db/atlas_creds.js
+.DS_Store
