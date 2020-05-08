@@ -1,11 +1,9 @@
-
-
 .container-li {
     background-color: rgba(13, 166, 226, .50); 
     display: flex;
     justify-content: center;
     padding: 1rem;
-    height: 800px; 
+    height: 1600px; 
 }
 
 .container-li:before {
@@ -28,7 +26,7 @@
     background-color: white;
     margin: 0 auto;
     width: 40%;
-    height: 120px;
+    height: 10rem;
     border-radius: 15px;
 }
 
@@ -38,10 +36,10 @@
 }
 
 .form-bottom-li {
-    
+ display: flex;   
+ justify-content: space-between;
 }
 
 .button-li {
     width: 50%;
-    
 }

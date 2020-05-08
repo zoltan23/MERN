@@ -4,7 +4,7 @@ import { UserContext } from '../services/UserContext'
 
 export default function Login() {
 
-const {   setIsLoggedIn } = useContext(UserContext)
+const { setIsLoggedIn } = useContext(UserContext)
 
 const handleSignIn = () => {
 setIsLoggedIn(true)
@@ -20,8 +20,8 @@ setIsLoggedIn(true)
                     <label>
                         <input type="checkbox" value="yes" />Remember me
                 </label>
-                    <a href="#">Forgot your password?</a>                  
                 </div>
+                    <a href="#">Forgot your password?</a>
             </div>
         </div>
     )

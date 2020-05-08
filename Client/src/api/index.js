@@ -6,10 +6,12 @@ const api = axios.create({
 
 export const createClient = payload => api.post(`/client`, payload)
 export const getClientById = id => api.get(`/client/${id}`)
+export const getClients = () => api.get(`/clients`)
 
 const apis = {
     createClient,
-    getClientById
+    getClientById,
+    getClients
 }
 
 export default apis
