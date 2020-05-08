@@ -76,22 +76,23 @@ getClientById = async (req, res) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-
         return res.status(200).json({ success: true, data: client })
     }).catch(err => console.log(err))
 }
 
 getClients = async (req, res) => {
     await Client.find({}, (err, clients) => {
+        console.log('clients', clients)
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
         if (!clients.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Movie not found` })
+                .json({ success: false, error: `Clients not found` })
         }
-        return res.status(200).json({ success: true, data: movies })
+  
+        return res.status(200).json({ success: true, data: clients })
     }).catch(err => console.log(err))
 }
 
