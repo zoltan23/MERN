@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 import api from '../../../api/index'
 import './SignUp.css';
+import ReusableInputField from './ReusableInputField';
 
 export default function SignUp() {
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
 
-    const getFirstName = (e) => {
-        console.log(e.target.value)
-        setFirstName(e.target.value)
+    const getFirstName = (input) => {
+        setFirstName(input)
     }
 
-    const getLastName = (e) => {
-        console.log(e.target.value)
-        setLastName(e.target.value)
+    const getLastName = (input) => {
+        setLastName(input)
     }
-
+    
     const handleSignUp = async (e) => {
         e.preventDefault()
         const payload = { firstName, lastName }
@@ -31,17 +30,15 @@ export default function SignUp() {
     return (
         <div className="card">
             <form className="card-body">
-                <div class="form-row">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="First name" onChange={getFirstName} />
+                <div className="form-group row">
+                    <div className="col">
+                        <ReusableInputField placeholder="First Name" onUpdateInput={getFirstName} />
                     </div>
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Last name" onChange={getLastName} />
+                    <div className="col">
+                        <ReusableInputField placeholder="Last Name" onUpdateInput={getLastName} />
                     </div>
-                </div>
-                <div>
-                    <button onClick={handleSignUp}>Sign Up!</button>
-                </div>
+                </div>              
+                <button className="col-12" onClick={handleSignUp}>Sign Up!</button>
             </form>
         </div>
     )
