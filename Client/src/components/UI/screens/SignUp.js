@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import api from '../../../api/index'
 import './SignUp.css';
-import ReusableInputField from './ReusableInputField';
+import ReusableInputField from '../reusable-components/ReusableInputField';
 
 export default function SignUp() {
 
@@ -32,10 +32,10 @@ export default function SignUp() {
             <form className="card-body">
                 <div className="form-group row">
                     <div className="col">
-                        <ReusableInputField placeholder="First Name" onUpdateInput={getFirstName} />
+                        <ReusableInputField id="firstName" type="text" placeholder="First Name" onUpdateInput={getFirstName} />
                     </div>
                     <div className="col">
-                        <ReusableInputField placeholder="Last Name" onUpdateInput={getLastName} />
+                        <ReusableInputField type="text" placeholder="Last Name" onUpdateInput={getLastName} />
                     </div>
                 </div>              
                 <button className="col-12" onClick={handleSignUp}>Sign Up!</button>

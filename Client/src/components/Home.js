@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from './UI/reusable-components/Card';
 import './Home.css';
 import Carousel from './UI/Carousel';
 

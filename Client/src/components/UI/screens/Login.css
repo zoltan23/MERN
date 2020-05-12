@@ -1,4 +1,6 @@
-.container-li {
+
+
+/* .container-li {
     background-color: rgba(13, 166, 226, .50); 
     display: flex;
     justify-content: center;
@@ -8,7 +10,7 @@
 
 .container-li:before {
     content: '';
-    background: url('./../../assets/images/slc.jpeg')
+    background: url('./../../../assets/images/slc.jpeg')
     no-repeat center center/cover;  
     opacity: 0.8;
     position: absolute;
@@ -42,4 +44,4 @@
 
 .button-li {
     width: 50%;
-}
+} */

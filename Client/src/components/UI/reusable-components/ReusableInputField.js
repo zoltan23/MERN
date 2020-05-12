@@ -24,7 +24,8 @@ export default function ReusableInputField(props) {
     }
     return (
         <div>
-            <input type="text" className={getValidString(isInputValid)} placeholder={props.placeholder} onChange={getInput} />
+            <label for={props.for}>{props.label}</label>
+            <input type={props.text} className={getValidString(isInputValid)} placeholder={props.placeholder} onChange={getInput} />
         </div>
     )
 }
