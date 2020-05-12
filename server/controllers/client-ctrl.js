@@ -1,4 +1,4 @@
-const Client = require('../models/client-model.js')
+const Client = require('../models/user-model.js')
 
 createClient = (req, res) => {
     const body = req.body
