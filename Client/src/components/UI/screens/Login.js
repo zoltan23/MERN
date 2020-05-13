@@ -13,6 +13,7 @@ export default function Login() {
 
     const getEmail = (input) => {
         setEmail(input)
+        console.log('email', email)
     }
 
     const getPassword = (input) => {
@@ -28,7 +29,7 @@ export default function Login() {
             <div className="card-body ">
                 <form className="mx-auto">
                     <div class="form-group">
-                        <label for="exampleInputEmail1" style={{ alignContent: 'left' }}>Email address</label>
+                        <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                     </div>
                     <div class="form-group">
@@ -38,13 +39,13 @@ export default function Login() {
                     <div className="form-group">
                         <div className="row">
                             <div className="col-6">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                             <div className="col-6">
-                            <div class="">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                            </div>
+                                <div class="">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                </div>
                             </div>
                         </div>
                     </div>
