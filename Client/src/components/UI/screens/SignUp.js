@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import api from '../../../api/index.js'
 import './SignUp.css';
 import ReusableInputField from '../reusable-components/ReusableInputField';
+import cookie from 'js-cookie'
 
 export default function SignUp() {
 
-    console.log('api', api)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [password, setPassword] = useState('')
@@ -14,6 +14,8 @@ export default function SignUp() {
 
     const getFirstName = (input) => {
         setFirstName(input)
+        console.log('firstName', firstName)
+        console.log('input', input)
     }
 
     const getLastName = (input) => {
@@ -27,7 +29,6 @@ export default function SignUp() {
 
     const getPassword = (input) => {
         setPassword(input)
-        console.log('password', password)
     }
 
     const handleSignUp = async (e) => {
@@ -36,7 +37,8 @@ export default function SignUp() {
         const payload = { firstName, lastName, password, email }
         console.log('payload', payload)
         await api.signUpUser(payload).then(res => {
-            console.log('res', res)
+            cookie.set('token', res.data)
+            console.log('res', res.data)
         }).catch(err => {
             console.log('err', err)
         })
@@ -60,8 +62,6 @@ export default function SignUp() {
                 </div>
                 <div className="form-group">
                     <ReusableInputField label="Password" type="password" placeholder="password" onUpdateInput={getPassword} />
-                    {/* <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" /> */}
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword2">Confirm Password</label>
