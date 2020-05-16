@@ -6,18 +6,13 @@ export default function ReusableInputField(props) {
     const [isInputValid, setIsInputValid] = useState(null)
 
     const getInput = (e) => {
-
         if (e.target.value.length > 0) {
             props.onUpdateInput(e.target.value)
-            console.log('reusable object', e.target.value)
             setInput(e.target.value)
             setIsInputValid(true)
-
         } else if (e.target.value.length == 0) {
-            
             setInput(e.target.value)
             setIsInputValid(false)
-
         }
     }
 

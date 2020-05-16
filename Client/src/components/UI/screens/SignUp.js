@@ -3,6 +3,7 @@ import api from '../../../api/index.js'
 import './SignUp.css';
 import ReusableInputField from '../reusable-components/ReusableInputField';
 import cookie from 'js-cookie'
+import ErrorMessage from '../reusable-components/ErrorMessage.js';
 
 export default function SignUp() {
 
@@ -11,6 +12,7 @@ export default function SignUp() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [errMsg, setErrMsg] = useState('')
 
     const getFirstName = (input) => {
         setFirstName(input)
@@ -45,30 +47,33 @@ export default function SignUp() {
     }
 
     return (
-        <div className="card">
-            <form className="card-body">
-                <div className="form-group ">
-                    <div className="row">
-                        <div className="col-6">
-                            <ReusableInputField label="First Name" id="firstName" type="text" placeholder="First Name" onUpdateInput={getFirstName} />
-                        </div>
-                        <div className="col-6">
-                            <ReusableInputField label="Last Name" type="text" placeholder="Last Name" onUpdateInput={getLastName} />
+        <div>
+            {errMsg ? <ErrorMessage errMsg={errMsg} /> : null}
+            <div className="card">
+                <form className="card-body">
+                    <div className="form-group ">
+                        <div className="row">
+                            <div className="col-6">
+                                <ReusableInputField label="First Name" id="firstName" type="text" placeholder="First Name" onUpdateInput={getFirstName} />
+                            </div>
+                            <div className="col-6">
+                                <ReusableInputField label="Last Name" type="text" placeholder="Last Name" onUpdateInput={getLastName} />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="form-group">
-                    <ReusableInputField label="Email" type="email"  id="exampleInputEmail1"  placeholder="Enter email" onUpdateInput={getEmail} />
-                </div>
-                <div className="form-group">
-                    <ReusableInputField label="Password" type="password" placeholder="password" onUpdateInput={getPassword} />
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword2">Confirm Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword2" placeholder="Password" />
-                </div>
-                <button type="submit" class="btn btn-primary" onClick={handleSignUp}>Submit</button>
-            </form>
+                    <div className="form-group">
+                        <ReusableInputField label="Email" type="email" id="exampleInputEmail1" placeholder="Enter email" onUpdateInput={getEmail} />
+                    </div>
+                    <div className="form-group">
+                        <ReusableInputField label="Password" type="password" placeholder="password" onUpdateInput={getPassword} />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword2">Confirm Password</label>
+                        <input type="password" className="form-control" id="exampleInputPassword2" placeholder="Password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" onClick={handleSignUp}>Submit</button>
+                </form>
+            </div>
         </div>
     )
 }
