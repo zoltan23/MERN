@@ -18,11 +18,9 @@ export default function SignedInLinks() {
     }
 
     return (
-        <div>
-            <ul className="navbar-right">
-                <li><NavLink to="/settings" activeClassName="active"><FontAwesomeIcon icon={faCog} />&nbsp;Settings</NavLink></li>
-                <li><NavLink to="/" onClick={signOut} activeClassName="active"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Sign Out</NavLink></li>
+            <ul className="navbar-nav ml-auto">
+                <li><NavLink className="nav-link" to="/settings" activeClassName="active"><FontAwesomeIcon icon={faCog} />&nbsp;Settings</NavLink></li>
+                <li><NavLink className="nav-link" to="/" onClick={signOut} activeClassName="active"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Sign Out</NavLink></li>
             </ul>
-        </div>
     )
 }

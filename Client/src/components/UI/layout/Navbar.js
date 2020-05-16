@@ -14,11 +14,14 @@ export default function Navbar() {
     return (
         <Fragment>
             <Route>
-                <nav className="navbar">
-                    <ul className="navbar-left">
-                        <li><NavLink to="/home" activeClassName="active"><FontAwesomeIcon icon={faHome}/>&nbsp;Home</NavLink></li>
-                        <li><NavLink to="/portfolio" activeClassName="active"><FontAwesomeIcon icon={faBriefcase} />&nbsp;Portfolio</NavLink></li>
-                        <li><NavLink to="/test" activeClassName="active">MongoDB CRUD</NavLink></li>
+                <nav className="navbar navbar-expand-sm navbar-dark sticky-top">
+                    <button className="navbar-toggler" data-toggle="collapse" data-target="collapse_target">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <ul className="navbar-nav">
+                        <li><NavLink className="nav-link" to="/home" activeClassName="active"><FontAwesomeIcon icon={faHome}/>&nbsp;Home</NavLink></li>
+                        <li><NavLink className="nav-link" to="/portfolio" activeClassName="active"><FontAwesomeIcon icon={faBriefcase} />&nbsp;Portfolio</NavLink></li>
+                        <li><NavLink className="nav-link" to="/test" activeClassName="active">MongoDB CRUD</NavLink></li>
                     </ul>
                     {isLoggedIn ? <SignedInLinks /> :  <SignedOutLinks />}
                 </nav>
