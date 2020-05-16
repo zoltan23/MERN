@@ -10,7 +10,7 @@ import { UserContext } from '../../services/UserContext';
 export default function Navbar() {
     
     const {isLoggedIn, setIsLoggedIn } = useContext(UserContext)
-    
+
     return (
         <Fragment>
             <Route>

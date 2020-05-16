@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Navbar from './components/UI/layout/Navbar'
 import './App.css';
-import Home from './components/Home';
-import Settings from './components/UI/Settings';
-import Login from './components/UI/Login';
+import Home from './components/UI/screens/Home';
+import Settings from './components/UI/screens/Settings';
+import Login from './components/UI/screens/Login';
 import Portfolio from './components/UI/screens/Portfolio';
 import { UserContext } from './components/services/UserContext'
 import Test from './components/UI/screens/Test';
@@ -25,6 +25,7 @@ function App() {
           console.log('err', err)
         })
       }
+
   const [isLoggedIn, setIsLoggedIn] = useState(false) 
 
   return (

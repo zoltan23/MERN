@@ -6,7 +6,7 @@ const Carousel = () => {
 
     return (
         <div className="container-carousel">
-            <SignUp />
+            
         </div>
     )
 }
