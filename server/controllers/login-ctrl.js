@@ -20,7 +20,7 @@ loginClient = async (req, res) => {
             const token = jwt.sign({ userId: user._id }, env.JWT_SECRET, { expiresIn: '7d' })
             res.status(200).json(token)
         } else {
-            res.status(401).send("Passwords do not match")
+            res.status(401).send("Incorrect password!")
         }
 
         const hashedPassword = await bcrypt.hash(req.body.password , 10)
