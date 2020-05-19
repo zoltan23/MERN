@@ -4,7 +4,7 @@ export default function Modal(props) {
 
     const [ modalBool, setModalBool ] = useState(null)
 
-
+    console.log('[Modal] modalBool', modalBool)
     props.setModalBool(modalBool)
     
     return (

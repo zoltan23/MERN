@@ -9,7 +9,6 @@ import Modal from '../reusable-components/Modal.js'
 export default function Dashboard() {
 
     let [ documents, setDocuments ] = useState([])
-    const [ modalBool, setModalBool ] = useState(null)
 
     useEffect(() => {
         getDocumentsFromDb()
@@ -17,49 +16,43 @@ export default function Dashboard() {
 
     const getDocumentsFromDb = async () => {
         const response = await api.getUsers()
-        console.log('[me] response', response)
         setDocuments(response.data.data)
-        console.log('records', documents)
     }
 
-    const deleteDocument = async (id, modalBool) => {
-        console.log('modalBool', modalBool)
-        if(modalBool === true) {
-         await api.deleteUser(id)
-         setModalBool(null)
-         console.log('user deleted')
-        } 
+    const deleteDocument = async (id) => {
+        await api.deleteUser(id)
         console.log('delete doc fired')
     }
 
-    const getModalBool = (input) => {
-        setModalBool(input)
-    }    
-
-    
-    
     return (
-        <div>
-            <Modal setModalBool={getModalBool}/>
-            <ul>
-                {documents.map(item =>
-                    <li key={item._id}>
-                        <div className="row h-100 justify-content-center align-items-center" >
-                            <div className="col-sm-3">{item.firstName}</div>
-                            <div className="col-sm-3">{item.lastName}</div>
-                            <div className="col-sm-3">{item.email}</div>
-                            <div className="col-sm-3">
-                                <FontAwesomeIcon className="fa-2x align"
-                                    data-toggle="modal"
-                                    data-target="#exampleModalCenter"
-                                    color="red"
-                                    icon={faTrashAlt}
-                                    onClick={() => deleteDocument(item._id, modalBool)} />
-                            </div>
-                        </div>
-                    </li>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Delete User</th>
+                </tr>
+            </thead>
+            <tbody>
+                {documents.map((item, index) =>
+                    <tr key={item._id}>
+                        <th scope="row">{index + 1}</th>
+                        <td>{item.firstName}</td>
+                        <td>{item.lastName}</td>
+                        <td>{item.email}</td>
+                        <td>
+                            <FontAwesomeIcon className="fa-2x align"
+                                data-toggle=""
+                                data-target=""
+                                color="red"
+                                icon={faTrashAlt}
+                                onClick={() => deleteDocument(item._id)} />
+                        </td>
+                    </tr>
                 )}
-            </ul>
-        </div>
+            </tbody>
+        </table>
     )
 }

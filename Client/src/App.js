@@ -21,7 +21,6 @@ function App() {
      const getClientsFromDb = () => {
         axios.get('api/clients').then((res) => {
           const data = res.data
-          console.log('data', data)
         }).catch((err) => {
           console.log('err', err)
         })
