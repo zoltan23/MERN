@@ -1,4 +1,4 @@
-Client/node_modules
-server/node_modules
-server/db/atlas_creds.js
+client/node_modules
+node_modules
 .DS_Store
+.env

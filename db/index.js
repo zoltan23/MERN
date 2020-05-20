@@ -1,9 +1,5 @@
-//const { MONGO_SVR } = require('./.env')
 const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-
-
-dotenv.config()
+const dotenv = require('dotenv').config()
 
 console.log('process.env.MONGO_SVR', process.env.MONGO_SVR)
 
