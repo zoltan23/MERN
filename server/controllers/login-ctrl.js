@@ -1,8 +1,7 @@
 const User = require('../models/user-model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const env = require('../db/atlas_creds')
-
+const dotenv = require('dotenv').config()
 
 loginClient = async (req, res) => {
     const { email, password } = req.body
@@ -17,10 +16,10 @@ loginClient = async (req, res) => {
         const passwordMatch = await bcrypt.compare(password, user.password)
 
         if(passwordMatch) {
-            const token = jwt.sign({ userId: user._id }, env.JWT_SECRET, { expiresIn: '7d' })
-            res.status(200).json(token)
+            const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' })
+            res.header('token', token).json(token)
         } else {
-            res.status(401).send("Passwords do not match")
+            res.status(401).send("Incorrect password!")
         }
 
         const hashedPassword = await bcrypt.hash(req.body.password , 10)

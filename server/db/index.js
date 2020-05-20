@@ -1,9 +1,14 @@
-const { MONGO_SVR } = require('./atlas_creds')
+//const { MONGO_SVR } = require('./.env')
 const mongoose = require('mongoose')
-console.log(MONGO_SVR)
+const dotenv = require('dotenv')
+
+
+dotenv.config()
+
+console.log('process.env.MONGO_SVR', process.env.MONGO_SVR)
 
 mongoose
-    .connect(MONGO_SVR, { useNewUrlParser: true })
+    .connect(process.env.MONGO_SVR, { useNewUrlParser: true })
     .catch(e => {
         console.error('Connection error', e.message)
     })

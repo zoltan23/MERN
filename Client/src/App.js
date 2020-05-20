@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { UserContext } from './components/services/UserContext'
+import axios from 'axios';
 import Navbar from './components/UI/layout/Navbar'
-import './App.css';
 import Home from './components/UI/screens/Home';
 import Settings from './components/UI/screens/Settings';
 import Login from './components/UI/screens/Login';
 import Portfolio from './components/UI/screens/Portfolio';
-import { UserContext } from './components/services/UserContext'
 import Test from './components/UI/screens/Test';
 import SignUp from './components/UI/screens/SignUp';
-import axios from 'axios';
+import Dashboard from './components/UI/screens/Dashboard';
+import './App.css';
 
 function App() {
 
@@ -20,7 +21,6 @@ function App() {
      const getClientsFromDb = () => {
         axios.get('api/clients').then((res) => {
           const data = res.data
-          console.log('data', data)
         }).catch((err) => {
           console.log('err', err)
         })
@@ -41,6 +41,7 @@ function App() {
             <Route path='/settings' component={Settings}></Route>
             <Route path='/portfolio' component={Portfolio}></Route>
             <Route path='/test' component={Test}></Route>
+            <Route path='/dashboard' component={Dashboard}></Route>
         </Switch>
           </UserContext.Provider>
       </BrowserRouter>

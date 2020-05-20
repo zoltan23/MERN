@@ -1,7 +1,8 @@
 const User = require('../models/user-model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const env = require('../db/atlas_creds')
+const dotenv = require('dotenv').config()
+
 
 signUpUser = async (req, res) => {
     const { firstName, lastName, email, password } = req.body
@@ -19,7 +20,7 @@ signUpUser = async (req, res) => {
         password: hash
     }).save()
     console.log('newUser', newUser)
-    const token = jwt.sign({ userId: newUser._id }, env.JWT_SECRET, 
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, 
         { expiresIn: '7d' })
         console.log('$$$$$token', token)
         res.status(201).json(token)

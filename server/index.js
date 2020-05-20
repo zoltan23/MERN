@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const db = require('./db')
-const clientRouter = require('./routes/client-router')
+const userRouter = require('./routes/user-router')
 const loginRouter = require('./routes/login-router')
 const signUpRouter = require('./routes/signup-router')
 
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', clientRouter)
+app.use('/api', userRouter)
 app.use('/api', loginRouter)
 app.use('/api', signUpRouter)
 
