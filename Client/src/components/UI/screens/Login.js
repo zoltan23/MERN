@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react'
 import './Login.css'
 import { UserContext } from '../../services/UserContext'
 import ReusableInputField from '../reusable-components/ReusableInputField'
-import { FontAwesomeIcon } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '../../../../node_modules/@fortawesome/free-solid-svg-icons'
 import api from '../../../api/index.js'
 import { handleLogin } from '../../services/Auth'
-import cookie from 'js-cookie'
+import cookie from '../../../../node_modules/js-cookie/src/js.cookie'
 import ErrorMessage from '../reusable-components/ErrorMessage'
 
 export default function Login() {

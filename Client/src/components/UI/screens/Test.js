@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios from '../../../../node_modules/axios'
 import api from '../../../api'
 
 export default function Test() {

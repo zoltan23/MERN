@@ -1,43 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../../../api/index.js'
 import './SignUp.css';
 import ReusableInputField from '../reusable-components/ReusableInputField';
-import cookie from 'js-cookie'
+import cookie from '../../../../node_modules/js-cookie/src/js.cookie'
 import ErrorMessage from '../reusable-components/ErrorMessage.js';
 
 export default function SignUp() {
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
     const [errMsg, setErrMsg] = useState('')
+    const [isDisabled, setIsDisabled] = useState(true)
 
-    const getFirstName = (input) => {
-        setFirstName(input)
-        console.log('firstName', firstName)
-        console.log('input', input)
-    }
+    const [userInfo, setUserInfo] = useState({
+        firstName: "",
+        lastName: "",
+        password: "",
+        email: "",
+        confirmPassword: ""
+    })
 
-    const getLastName = (input) => {
-        setLastName(input)
-    }
+    useEffect(() => {
+        const isUser = Object.values(userInfo).every(el => Boolean(el))
+        const { password, confirmPassword } = userInfo
+        isUser && (password ===confirmPassword) ? setIsDisabled(false) : setIsDisabled(true)
+    }, [userInfo])
 
-    const getEmail = (input) => {
-        setEmail(input)
-        console.log('email', email)
-    }
-
-    const getPassword = (input) => {
-        setPassword(input)
+    function handleOnChange(input, name) {
+        setUserInfo(prevState => ({ ...prevState, [name]: input }))
+        console.log('signup', userInfo)
     }
 
     const handleSignUp = async (e) => {
         e.preventDefault()
         console.log('handleSubmit clicked')
-        const payload = { firstName, lastName, password, email }
-        console.log('payload', payload)
+        const { firstName, lastName, email, password } = userInfo
+        const payload = { firstName, lastName, email, password }
         await api.signUpUser(payload).then(res => {
             cookie.set('token', res.data)
             console.log('res', res.data)
@@ -54,24 +50,23 @@ export default function SignUp() {
                     <div className="form-group ">
                         <div className="row">
                             <div className="col-6">
-                                <ReusableInputField label="First Name" id="firstName" type="text" placeholder="First Name" onUpdateInput={getFirstName} />
+                                <ReusableInputField label="First Name" id="firstName" name="firstName" type="text" placeholder="First Name" onUpdateInput={handleOnChange} />
                             </div>
                             <div className="col-6">
-                                <ReusableInputField label="Last Name" type="text" placeholder="Last Name" onUpdateInput={getLastName} />
+                                <ReusableInputField label="last Name" id="lastName" name="lastName" type="text" placeholder="First Name" onUpdateInput={handleOnChange} />
                             </div>
                         </div>
                     </div>
                     <div className="form-group">
-                        <ReusableInputField label="Email" type="email" id="exampleInputEmail1" placeholder="Enter email" onUpdateInput={getEmail} />
+                        <ReusableInputField label="Email" id="exampleInputEmail1" name="email" type="email" placeholder="Enter email" onUpdateInput={handleOnChange} />
                     </div>
                     <div className="form-group">
-                        <ReusableInputField label="Password" type="password" placeholder="password" onUpdateInput={getPassword} />
+                        <ReusableInputField label="Password" type="password" name="password" placeholder="password" onUpdateInput={handleOnChange} />
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword2">Confirm Password</label>
-                        <input type="password" className="form-control" id="exampleInputPassword2" placeholder="Password" />
+                        <ReusableInputField label="Confirm Password" type="password" name="confirmPassword" placeholder="password" onUpdateInput={handleOnChange} />
                     </div>
-                    <button type="submit" class="btn btn-primary" onClick={handleSignUp}>Submit</button>
+                    <button type="submit" class="btn btn-primary" disabled={isDisabled} onClick={handleSignUp}>Submit</button>
                 </form>
             </div>
         </div>
