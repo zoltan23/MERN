@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { UserContext } from './components/services/UserContext'
-import axios from 'axios';
+import axios from '../node_modules/axios';
 import Navbar from './components/UI/layout/Navbar'
 import Home from './components/UI/screens/Home';
 import Settings from './components/UI/screens/Settings';

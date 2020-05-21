@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios from '../../../../node_modules/axios'
 import api from '../../../api/index.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '../../../../node_modules/@fortawesome/react-fontawesome'
+import { faTrashAlt } from '../../../../node_modules/@fortawesome/free-solid-svg-icons'
 import Modal from '../reusable-components/Modal.js'
 
 
