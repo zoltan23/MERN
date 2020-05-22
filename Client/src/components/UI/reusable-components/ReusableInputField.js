@@ -2,21 +2,12 @@ import React, { useState } from 'react'
 
 export default function ReusableInputField(props) {
 
-    const [input, setInput] = useState('')
     const [isInputValid, setIsInputValid] = useState(null)
 
     const getInput = (e) => {
-        if (e.target.value.length > 0) {
-            props.onUpdateInput(e.target.value, props.name)
-            //const { name, value } = e.target
-            setInput(e.target.value)
-            console.log('[Reusable] value', input)
-            setIsInputValid(true)
-        } else if (e.target.value.length == 0) {
-            setInput(e.target.value)
-            setIsInputValid(false)
+        props.onUpdateInput(e.target.value, props.name)
+        e.target.value.length > 0 ? setIsInputValid(true) : setIsInputValid(false)
         }
-    }
 
     const getValidString = (stateBool) => {
         if (stateBool === null)

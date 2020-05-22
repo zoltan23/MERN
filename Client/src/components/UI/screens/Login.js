@@ -1,36 +1,44 @@
-import React, { useContext, useState } from 'react'
-import './Login.css'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../services/UserContext'
 import ReusableInputField from '../reusable-components/ReusableInputField'
 import { FontAwesomeIcon } from '../../../../node_modules/@fortawesome/free-solid-svg-icons'
 import api from '../../../api/index.js'
-import { handleLogin } from '../../services/Auth'
 import cookie from '../../../../node_modules/js-cookie/src/js.cookie'
 import ErrorMessage from '../reusable-components/ErrorMessage'
+import './Login.css'
 
 export default function Login() {
 
     const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+    const [ errMsg, setErrMsg ] = useState('')
+    const [ isDisabled, setIsDisabled ] = useState(true)
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [errMsg, setErrMsg] = useState('')
+    const [ userInfo, setUserInfo ] = useState({
+        email: "",
+        password: "",
+    })
 
-    const getEmail = (input) => {
-        setEmail(input)
-    }
+    useEffect(() => {
+        const isUser = Object.values(userInfo).every(el => Boolean(el))
+        console.log('userInfo', userInfo)
+        console.log('isUser', isUser)
+        isUser  ? setIsDisabled(false) : setIsDisabled(true)
+    }, [userInfo])
 
-    const getPassword = (input) => {
-        setPassword(input)
+    function handleOnChange(input, name) {
+        setUserInfo(prevState => ({ ...prevState, [name]: input }))
+        console.log('Login')
     }
 
     const handleSignIn = async (e) => {
         e.preventDefault()
+        const { email, password } = userInfo
         const payload = { email, password }
         try {
             const response = await api.loginUser(payload)
             setIsLoggedIn(true)
             cookie.set('token', response.data)
+            setIsLoggedIn(true)
         } catch (error) {
             if (error.response) {
                 console.error('error.response.data', error.response.data)
@@ -39,6 +47,7 @@ export default function Login() {
         } finally {
 
         }
+        console.log('userInfo', userInfo)
     }
 
     return (
@@ -51,15 +60,15 @@ export default function Login() {
                             <h3>Login Form</h3>
                         </div>
                         <div className="form-group">
-                            <ReusableInputField label="Email Address" type="email" id="exampleInputEmail1" placeholder="Enter email" onUpdateInput={getEmail} />
+                            <ReusableInputField label="Email Address" type="email" name="email" id="exampleInputEmail1" placeholder="Enter email" onUpdateInput={handleOnChange} />
                         </div>
                         <div className="form-group">
-                            <ReusableInputField label="Password" type="password" id="exampleInputEmail1" placeholder="Enter email" onUpdateInput={getPassword} />
+                            <ReusableInputField label="Password" type="password" name="password" id="exampleInputEmail1" placeholder="Enter email" onUpdateInput={handleOnChange} />
                         </div>
                         <div className="form-group">
                             <div className="row">
                                 <div className="col-6">
-                                    <button type="submit" className="btn btn-primary" onClick={handleSignIn}>Submit</button>
+                                    <button type="submit" className="btn btn-primary" disabled={isDisabled} onClick={handleSignIn}>Submit</button>
                                 </div>
                                 <div className="col-6">
                                     <div className="">
