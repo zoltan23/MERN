@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '../../../../node_modules/@fortawesome/react-fontawesome'
 import { faCog, faSignOutAlt } from '../../../../node_modules/@fortawesome/free-solid-svg-icons'
 import { UserContext } from '../../services/UserContext'
+import { handleSignOut } from '../../services/Auth'
 
 export default function SignedInLinks() {
    
@@ -12,8 +13,9 @@ export default function SignedInLinks() {
         e.preventDefault()
         let signOut = window.confirm("Are you sure you want to log out?")
         if (signOut === true){
-                setIsLoggedIn(false)
-               console.log(isLoggedIn)
+            handleSignOut()
+            setIsLoggedIn(false)
+            console.log(isLoggedIn)
         }
     }
 
