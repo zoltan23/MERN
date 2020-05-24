@@ -17,7 +17,7 @@ loginClient = async (req, res) => {
 
         if(passwordMatch) {
             const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' })
-            res.header('token', token).json(token)
+            res.header('token', token).json({token, user})
         } else {
             res.status(401).send("Incorrect password!")
         }

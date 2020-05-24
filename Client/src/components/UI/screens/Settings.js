@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{ useContext }  from 'react'
+import { UserContext } from '../../services/UserContext'
 
 export default function Settings() {
-    return (
+     const { role } = useContext(UserContext)
+    return(
         <div>
+            {role}
             Settings!!!
         </div>
     )

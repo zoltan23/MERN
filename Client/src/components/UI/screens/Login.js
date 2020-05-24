@@ -6,10 +6,12 @@ import api from '../../../api/index.js'
 import cookie from '../../../../node_modules/js-cookie/src/js.cookie'
 import ErrorMessage from '../reusable-components/ErrorMessage'
 import './Login.css'
+import { Redirect } from 'react-router-dom'
 
 export default function Login() {
 
-    const { isLoggedIn, setIsLoggedIn } = useContext(UserContext)
+    const { isAuth, setIsAuth, setRole } = useContext(UserContext)
+
     const [ errMsg, setErrMsg ] = useState('')
     const [ isDisabled, setIsDisabled ] = useState(true)
 
@@ -31,14 +33,14 @@ export default function Login() {
     }
 
     const handleSignIn = async (e) => {
-        e.preventDefault()
+       e.preventDefault()
         const { email, password } = userInfo
         const payload = { email, password }
         try {
             const response = await api.loginUser(payload)
-            setIsLoggedIn(true)
             cookie.set('token', response.data)
-            setIsLoggedIn(true)
+            console.log('response', response)
+            setIsAuth(true) 
         } catch (error) {
             if (error.response) {
                 console.error('error.response.data', error.response.data)
@@ -47,7 +49,7 @@ export default function Login() {
         } finally {
 
         }
-        console.log('userInfo', userInfo)
+        console.log('isAuth', isAuth)
     }
 
     return (
