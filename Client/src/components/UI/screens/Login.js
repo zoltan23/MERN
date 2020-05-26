@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom'
 
 export default function Login() {
 
-    const { isAuth, setIsAuth, setRole } = useContext(UserContext)
+    const { isAuth, setIsAuth, setUserRole, setUser  } = useContext(UserContext)
 
     const [ errMsg, setErrMsg ] = useState('')
     const [ isDisabled, setIsDisabled ] = useState(true)
@@ -22,14 +22,11 @@ export default function Login() {
 
     useEffect(() => {
         const isUser = Object.values(userInfo).every(el => Boolean(el))
-        console.log('userInfo', userInfo)
-        console.log('isUser', isUser)
         isUser  ? setIsDisabled(false) : setIsDisabled(true)
     }, [userInfo])
 
     function handleOnChange(input, name) {
         setUserInfo(prevState => ({ ...prevState, [name]: input }))
-        console.log('Login')
     }
 
     const handleSignIn = async (e) => {
@@ -39,8 +36,8 @@ export default function Login() {
         try {
             const response = await api.loginUser(payload)
             cookie.set('token', response.data)
-            console.log('response', response)
             setIsAuth(true) 
+            setUserRole(response.data.user.role)
         } catch (error) {
             if (error.response) {
                 console.error('error.response.data', error.response.data)
@@ -49,7 +46,6 @@ export default function Login() {
         } finally {
 
         }
-        console.log('isAuth', isAuth)
     }
 
     return (

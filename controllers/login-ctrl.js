@@ -8,7 +8,6 @@ loginClient = async (req, res) => {
     console.log('User', User)
     try {
         const user = await User.findOne( { email } ).select('+password')
-        console.log('login: user', user)
         if(!user) {
             res.status(404).send("No user exists with that email!")
         } 
@@ -17,7 +16,7 @@ loginClient = async (req, res) => {
 
         if(passwordMatch) {
             const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' })
-            res.header('token', token).json({token, user})
+            res.header('token', token).json({user})
         } else {
             res.status(401).send("Incorrect password!")
         }
