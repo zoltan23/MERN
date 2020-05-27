@@ -5,12 +5,11 @@ import { UserContext } from '../../services/UserContext'
 
 export default function Test() {
 
-  const { isAuth, setIsAuth } = useContext(UserContext)
+  const { isAuth, setIsAuth, userData } = useContext(UserContext)
  
   return (
     <div>
-      <button onClick={() =>  setIsAuth(!isAuth)}>Click Me!</button>
-      {isAuth ? "auth" : "no auth"}
+      {userData.firstName}
     </div>
   )
 }

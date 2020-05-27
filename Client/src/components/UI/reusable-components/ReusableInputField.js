@@ -18,7 +18,7 @@ export default function ReusableInputField(props) {
     return (
         <div>
             <label for={props.for}>{props.label}</label>
-            <input type={props.text} name={props.name}  className={getValidString(isInputValid)} placeholder={props.placeholder} onChange={getInput} />
+            <input type={props.text} name={props.name} value={props.value} className={getValidString(isInputValid)} placeholder={props.placeholder} onChange={getInput} />
             <div className="invalid-feedback">
                 Please provide a valid {props.label.toLowerCase()}.
             </div>

@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom'
 
 export default function Login() {
 
-    const { isAuth, setIsAuth, setUserRole, setUser  } = useContext(UserContext)
+    const { isAuth, setIsAuth, setUser } = useContext(UserContext)
 
     const [ errMsg, setErrMsg ] = useState('')
     const [ isDisabled, setIsDisabled ] = useState(true)
@@ -31,20 +31,21 @@ export default function Login() {
 
     const handleSignIn = async (e) => {
        e.preventDefault()
+       setIsAuth(true)
         const { email, password } = userInfo
         const payload = { email, password }
         try {
             const response = await api.loginUser(payload)
-            cookie.set('token', response.data)
+            cookie.set('token', response.data.token)
             setIsAuth(true) 
-            setUserRole(response.data.user.role)
+            setUser({...response.data.user})
         } catch (error) {
             if (error.response) {
                 console.error('error.response.data', error.response.data)
                 setErrMsg(error.response.data)
             }
         } finally {
-
+      
         }
     }
 

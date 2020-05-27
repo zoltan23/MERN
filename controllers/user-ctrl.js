@@ -34,8 +34,9 @@ createUser = (req, res) => {
 }
 
 updateUser = async (req, res) => {
-    const body = req.body
 
+    const body = req.body
+    console.log('[update user] body', body)
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -43,16 +44,18 @@ updateUser = async (req, res) => {
         })
     }
 
-    User.findOne({ _id: req.params.id }, (err, user) => {
+    console.log(req.params.id)  
+
+    User.findOne({ _id: req.params.id },  (err, user) => {
         if (err) {
             return res.status(404).json({
                 err,
                 message: 'user not found!',
             })
         }
-        user.name = body.name
-        user.time = body.time
-        user.rating = body.rating
+        user.firstName = body.firstName
+        user.lastName = body.lastName
+        user.email = body.email
         user
             .save()
             .then(() => {

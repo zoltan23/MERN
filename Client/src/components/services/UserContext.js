@@ -2,28 +2,27 @@ import React from 'react'
 
 export const UserContext  = React.createContext({ role: '', 
                                                   isAuth: false,
-                                                  userInfo: {},
+                                                  userData: {},
                                                    setIsAuth: () => {},
                                                    setUserRole: () => {},
-                                                   setUser: () =>  {}
+                                                   setUserData: () =>  {}
                                                 })
 
 const UserContextProvider = (props) => {
 
-    const [isAuthenticated, setIsAuthenticated] = React.useState(false)
-    const [role, setRole] = React.useState('')
-    const [ userInfo, setUserInfo ] = React.useState({})
+    const [isAuthenticated, setIsAuthenticated ] = React.useState(false)
+    const [ userData, setUserData ] = React.useState({})
  
     const setIsAuth = (value) => {
         setIsAuthenticated(value)
     }
 
-    const setUserRole = (value) => {
-        setRole(value)
+    const setUser = (value) => {
+        setUserData(value)
     }
 
     return (
-    <UserContext.Provider value={{role: role, isAuth: isAuthenticated, setIsAuth, setUserRole }}>
+    <UserContext.Provider value={{isAuth: isAuthenticated, userData: userData, setIsAuth, setUser }}>
         {props.children}
     </UserContext.Provider>        
     )
