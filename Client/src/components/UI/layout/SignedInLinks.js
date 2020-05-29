@@ -6,23 +6,23 @@ import { UserContext } from '../../services/UserContext'
 import { handleSignOut } from '../../services/Auth'
 
 export default function SignedInLinks() {
-   
-    const { isAuth, setIsAuth, userData } = useContext(UserContext) 
-    console.log('userData', userData)
+
+    const { isAuth, setIsAuth, userData } = useContext(UserContext)
+
     const signOut = (e) => {
         e.preventDefault()
         let signOut = window.confirm("Are you sure you want to log out?")
-        if (signOut === true){
+        if (signOut === true) {
             handleSignOut()
             setIsAuth(false)
         }
     }
 
     return (
-            <ul className="navbar-nav ml-auto">
-                {userData.role === "admin" ? <NavLink className="nav-item nav-link" to="/dashboard" activeClassName="active">Dashboard</NavLink> : null}
-                <NavLink className="nav-item nav-link" to="/settings" activeClassName="active"><FontAwesomeIcon icon={faCog} />&nbsp;Settings</NavLink>
-                <NavLink className="nav-item nav-link" to="/" onClick={signOut} activeClassName="active"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Sign Out</NavLink>
-            </ul>
+        <ul className="navbar-nav ml-auto">
+            {userData.role === "admin" ? <NavLink className="nav-item nav-link" to="/dashboard" activeClassName="active">Dashboard</NavLink> : null}
+            <NavLink className="nav-item nav-link" to="/settings" activeClassName="active"><FontAwesomeIcon icon={faCog} />&nbsp;Settings</NavLink>
+            <NavLink className="nav-item nav-link" to="/" onClick={signOut} activeClassName="active"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Sign Out</NavLink>
+        </ul>
     )
 }

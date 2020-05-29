@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../../api/index.js'
 import Table from '../reusable-components/Table'
+import Search from '../reusable-components/Search.js'
 
 export default function Dashboard() {
 
-    let [ documents, setDocuments ] = useState([])
+    let [documents, setDocuments] = useState([])
 
     useEffect(() => {
         getDocumentsFromDb()
@@ -26,6 +27,9 @@ export default function Dashboard() {
     }
 
     return (
-        <Table documents={documents} deleteItem={handleDeleteItem} />
+        <>
+            <Search documents={documents} />
+            <Table documents={documents} deleteItem={handleDeleteItem} />
+        </>
     )
 }

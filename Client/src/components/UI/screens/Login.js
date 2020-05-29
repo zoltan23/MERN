@@ -10,19 +10,21 @@ import { Redirect } from 'react-router-dom'
 
 export default function Login() {
 
-    const { isAuth, setIsAuth, setUser } = useContext(UserContext)
+    const { isAuth, setIsAuth, setUser, userData } = useContext(UserContext)
 
-    const [ errMsg, setErrMsg ] = useState('')
-    const [ isDisabled, setIsDisabled ] = useState(true)
+    const [errMsg, setErrMsg] = useState('')
+    const [isDisabled, setIsDisabled] = useState(true)
 
-    const [ userInfo, setUserInfo ] = useState({
+    const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
     })
 
+    //setIsAuth(true)
+
     useEffect(() => {
         const isUser = Object.values(userInfo).every(el => Boolean(el))
-        isUser  ? setIsDisabled(false) : setIsDisabled(true)
+        isUser ? setIsDisabled(false) : setIsDisabled(true)
     }, [userInfo])
 
     function handleOnChange(input, name) {
@@ -30,28 +32,26 @@ export default function Login() {
     }
 
     const handleSignIn = async (e) => {
-       e.preventDefault()
-       setIsAuth(true)
+        e.preventDefault()
+        setIsAuth(true)
         const { email, password } = userInfo
         const payload = { email, password }
         try {
             const response = await api.loginUser(payload)
             cookie.set('token', response.data.token)
-            setIsAuth(true) 
-            setUser({...response.data.user})
+            setIsAuth(true)
+            setUser({ ...response.data.user})
         } catch (error) {
             if (error.response) {
                 console.error('error.response.data', error.response.data)
                 setErrMsg(error.response.data)
             }
-        } finally {
-      
-        }
+        } 
     }
 
     return (
         <div className="container col-10 mt-3">
-            {errMsg ? <ErrorMessage errMsg={errMsg}/> : null}
+            {errMsg ? <ErrorMessage errMsg={errMsg} /> : null}
             <div className=" card mx-auto mt-5" >
                 <div className="card-body">
                     <form className="mx-auto">

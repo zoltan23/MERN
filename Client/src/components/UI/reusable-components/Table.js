@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '../../../../node_modules/@fortawesome/react-fon
 import { faTrashAlt } from '../../../../node_modules/@fortawesome/free-solid-svg-icons'
 
 export default function Table({ documents, deleteItem }) {
-
+console.log('[Table] documents', documents)
     return (
         <Fragment>
             <table class="table">

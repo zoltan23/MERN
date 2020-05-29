@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { UserContext } from './components/services/UserContext';
 import UserContextProvider from './components/services/UserContext';
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>

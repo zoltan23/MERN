@@ -8,8 +8,7 @@ export default function Settings() {
     const { userData, setUser } = useContext(UserContext)
 
     const { _id, firstName, lastName, email } = userData
-    console.log('[settings] userData', userData)
-
+    
     const [ errMsg, setErrMsg ] = useState('')
     const [ isDisabled, setIsDisabled ] = useState(true)
 
