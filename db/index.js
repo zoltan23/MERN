@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv').config()
 
-console.log('process.env.MONGO_SVR', process.env.MONGO_SVR)
-
 mongoose
     .connect(process.env.MONGO_SVR, { useNewUrlParser: true })
     .catch(e => {

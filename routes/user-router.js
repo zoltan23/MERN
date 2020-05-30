@@ -1,5 +1,5 @@
 const express = require('express')
-//const verify = require('../utils/auth')
+const authenticateToken = require('../utils/auth')
 
 const UserCtrl = require('../controllers/user-ctrl')
 

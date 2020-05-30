@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Search({ documents }) {
+
+    console.log('Search fired')
 
     const [searchTerm, setSearchTerm] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
     const [searchField, setSearchField] = React.useState('firstName');
+    const [sortDirection, setSortDirection] = React.useState('ascending');
+    const [isAsc, setIsAsc] = React.useState(null);
+    const [sortedDocuments, setSortedDocuments] = React.useState([{firstName: "tom"},
+                                                                    {firstName: "apple"},
+                                                                {firstName: "joe"}]);
 
     const handleChange = e => {
         setSearchTerm(e.target.value);
@@ -16,6 +23,31 @@ export default function Search({ documents }) {
         );
         setSearchResults(results);
     }, [searchTerm]);
+
+    function sortByField(arr, searchField, isAsc) {
+        console.log('isAsc', isAsc)
+       var sortedDocuments = [...arr].sort (
+            function (a, b) {
+                if (a[searchField] < b[searchField]){
+                    return isAsc ? -1 : 1;
+                } else if (a[searchField] > b[searchField]){
+                    return isAsc ? 1 : -1;
+                } else {
+                    return 0;   
+                }
+            }
+        );
+        setSortedDocuments(sortedDocuments)
+        console.log('sortedDocuments', sortedDocuments)
+    }
+    
+    const handleSort = (e) => {
+        console.log('event', e.target.value)
+        setIsAsc(e.target.value)
+        sortByField(sortedDocuments, searchField, isAsc)
+        //console.log(documents)
+    }
+
 
     return (
         <div className="container mt-1">
@@ -33,6 +65,8 @@ export default function Search({ documents }) {
                     <option class="dropdown-item" value="lastName" >Last Name</option>
                     <option class="dropdown-item" value="email" >Email</option>
                 </select>
+                <button value={true} onClick={handleSort}>Sort ascending</button>
+                <button value={false} onClick={handleSort}>Sort descending</button>
             </div>
             <ul>
                 {searchResults.map((item) => (
