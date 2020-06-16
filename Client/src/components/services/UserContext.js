@@ -3,8 +3,8 @@ import React from 'react'
 export const UserContext = React.createContext({
     isAuth: false,
     userData: {},
-    setIsAuth: () => { },
-    setUserData: () => { }
+    setIsAuth: () => {},
+    setUserData: () => {}
 })
 
 const UserContextProvider = (props) => {

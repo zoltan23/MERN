@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import api from '../../../api/index.js'
-import './SignUp.css';
 import ReusableInputField from '../reusable-components/ReusableInputField';
 import cookie from '../../../../node_modules/js-cookie/src/js.cookie'
 import ErrorMessage from '../reusable-components/ErrorMessage.js';
+import Spinner from '../reusable-components/Spinner/Spinner.js';
+import './SignUp.css';
 
 export default function SignUp() {
 
     const [errMsg, setErrMsg] = useState('')
     const [isDisabled, setIsDisabled] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [userInfo, setUserInfo] = useState({
         firstName: "",
@@ -31,19 +33,20 @@ export default function SignUp() {
 
     const handleSignUp = async (e) => {
         e.preventDefault()
-        console.log('handleSubmit clicked')
+        setIsLoading(true)
         const { firstName, lastName, email, password } = userInfo
         const payload = { firstName, lastName, email, password }
         await api.signUpUser(payload).then(res => {
             cookie.set('token', res.data)
-            console.log('res', res.data)
         }).catch(err => {
             console.log('err', err)
         })
+        setIsLoading(false)
     }
-
+  
     return (
         <div>
+            <div>{isLoading ? <Spinner /> : ''}</div>
             {errMsg ? <ErrorMessage errMsg={errMsg} /> : null}
             <div className="card">
                 <form className="card-body">

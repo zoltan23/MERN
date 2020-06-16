@@ -10,7 +10,6 @@ import Test from './components/UI/screens/Test';
 import SignUp from './components/UI/screens/SignUp';
 import Dashboard from './components/UI/screens/Dashboard';
 import './App.css';
-import Search from './components/UI/reusable-components/Search';
 
 function App() {
 
